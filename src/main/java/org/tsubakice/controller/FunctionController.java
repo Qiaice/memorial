@@ -56,6 +56,10 @@ public class FunctionController {
     @Operation(
             summary = "用户注册接口",
             description = "该接口用于用户注册，需要以 post 方式提交用户的注册信息")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "REGISTER_SUCCESS", description = "用户注册成功"),
+            @ApiResponse(responseCode = "REGISTER_FAIL", description = "用户注册失败")
+    })
     @PostMapping(value = { "/register" })
     public Result register(
             @RequestBody UserRegisterTransfer transfer
@@ -71,13 +75,17 @@ public class FunctionController {
     @Operation(
             summary = "用户登录接口",
             description = "该接口用于用户登录，需要以 post 方式提交用户的登录信息")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "LOGIN_SUCCESS", description = "用户登录成功"),
+            @ApiResponse(responseCode = "LOGIN_FAIL", description = "用户登录失败")
+    })
     @PostMapping(value = { "/login" })
     public Result login(
             @RequestBody UserLoginTransfer transfer
     ) {
         // 用户登录所需逻辑
 
-        // 登录成功: return Result.success(ResCode.LOGIN_SUCCESS, "登录成功")
+        // 登录成功: return Result.success(ResCode.LOGIN_SUCCESS, "登录成功", token)
 
         // 登录失败: return Result.fail(ResCode.LOGIN_FAIL, "登录失败")
         return null;

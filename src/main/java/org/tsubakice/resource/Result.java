@@ -7,7 +7,7 @@ import lombok.Data;
 @Schema(name = "统一响应数据载体")
 public class Result {
 
-    @Schema(description = "响应状态码", example = "200")
+    @Schema(description = "响应状态码", example = "SUCCESS")
     private ResCode code;
 
     @Schema(description = "响应结果的描述", example = "请求成功")
