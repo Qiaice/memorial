@@ -1,6 +1,7 @@
 package org.tsubakice.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ public class FunctionController {
         this.userService = userService;
     }
 
-    @Operation(summary = "访问测试接口", description = "该接口用于测试是否能够访问到后端提供的服务")
+    @Operation(
+            summary = "访问测试接口",
+            description = "该接口用于测试是否能够访问到后端提供的服务")
     @GetMapping(value = { "/test" })
     public Result test(HttpServletRequest request) {
 
