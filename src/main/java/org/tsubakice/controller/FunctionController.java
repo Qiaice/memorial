@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Tag(name = "游离功能模块")
 @RestController
-@RequestMapping(value = { "/api" })
+@RequestMapping(value = { "/api" }, produces = { "application/json; charset=utf-8" })
 public class FunctionController {
 
     private final UserService userService;
