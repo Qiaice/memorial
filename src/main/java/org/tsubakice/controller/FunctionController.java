@@ -2,12 +2,14 @@ package org.tsubakice.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.tsubakice.data.transfer.UserLoginTransfer;
 import org.tsubakice.data.transfer.UserRegisterTransfer;
+import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
 import org.tsubakice.service.UserService;
 
@@ -59,6 +61,10 @@ public class FunctionController {
             @RequestBody UserRegisterTransfer transfer
     ) {
         // 用户注册所需逻辑
+
+        // 注册成功: return Result.success(ResCode.REGISTER_SUCCESS, "注册成功")
+
+        // 注册失败: return Result.fail(ResCode.REGISTER_FAIL, "注册失败");
         return null;
     }
 
@@ -70,6 +76,10 @@ public class FunctionController {
             @RequestBody UserLoginTransfer transfer
     ) {
         // 用户登录所需逻辑
+
+        // 登录成功: return Result.success(ResCode.LOGIN_SUCCESS, "登录成功")
+
+        // 登录失败: return Result.fail(ResCode.LOGIN_FAIL, "登录失败")
         return null;
     }
 }
