@@ -22,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
         // 注册 token 拦截器
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/api/**") // 默认过滤所有请求
+                .excludePathPatterns("/api/test") // 放行测试请求
                 .excludePathPatterns("/api/register") // 放行注册请求
                 .excludePathPatterns("/api/login"); // 放行登录请求
     }

@@ -3,10 +3,12 @@ package org.tsubakice.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.tsubakice.data.transfer.UserLoginTransfer;
+import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.resource.Result;
+import org.tsubakice.service.UserService;
 
 import java.time.LocalDateTime;
 import java.util.Enumeration;
@@ -18,10 +20,14 @@ import java.util.Map;
 @RequestMapping(value = { "/api" })
 public class FunctionController {
 
-    @Operation(
-            summary = "访问测试接口",
-            description = "该接口用于测试是否能够访问到后端提供的服务"
-    )
+    private final UserService userService;
+
+    @Autowired
+    public FunctionController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Operation(summary = "访问测试接口", description = "该接口用于测试是否能够访问到后端提供的服务")
     @GetMapping(value = { "/test" })
     public Result test(HttpServletRequest request) {
 
@@ -40,5 +46,27 @@ public class FunctionController {
                 "headers", headers,
                 "time", time)
         );
+    }
+
+    @Operation(
+            summary = "用户注册接口",
+            description = "该接口用于用户注册，需要以 post 方式提交用户的注册信息")
+    @PostMapping(value = { "/register" })
+    public Result register(
+            @RequestBody UserRegisterTransfer transfer
+    ) {
+        // 用户注册所需逻辑
+        return null;
+    }
+
+    @Operation(
+            summary = "用户登录接口",
+            description = "该接口用于用户登录，需要以 post 方式提交用户的登录信息")
+    @PostMapping(value = { "/login" })
+    public Result login(
+            @RequestBody UserLoginTransfer transfer
+    ) {
+        // 用户登录所需逻辑
+        return null;
     }
 }

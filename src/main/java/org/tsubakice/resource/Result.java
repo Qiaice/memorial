@@ -10,7 +10,7 @@ public class Result {
     @Schema(description = "响应状态码", example = "200")
     private Integer code;
 
-    @Schema(description = "响应结果的描述", example = "登录成功")
+    @Schema(description = "响应结果的描述", example = "请求成功")
     private String message;
 
     @Schema(description = "响应的数据", example = "null")
