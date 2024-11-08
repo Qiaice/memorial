@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +26,10 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
-    private final JwtBuilder jwtBuilder;
 
     @Autowired
-    public UserController(UserService userService, JwtBuilder jwtBuilder) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.jwtBuilder = jwtBuilder;
     }
 
     @Operation(
@@ -70,26 +69,7 @@ public class UserController {
             return Result.fail(ResCode.LOGIN_FAIL, "不能传递空数据");
         }
 
-        // 用户名不存在直接返回登录失败
-        User user = userService.getUserByUname(transfer.getUname());
-        log.info("user: {}", user);
-        if (user == null) {
-            return Result.fail(
-                    ResCode.LOGIN_FAIL, "用户 " + transfer.getUname() + " 不存在");
-        }
-
-        // 密码一致即可判定用户登录成功
-        if (user.getPasswd().equals(transfer.getPasswd())) {
-            return Result.success(
-                    ResCode.LOGIN_SUCCESS,
-                    "用户 " + transfer.getUname() + " 登录成功",
-                    jwtBuilder.createToken(Map.of(
-                            "uid", user.getUid(),
-                            "uname", user.getUname()
-                    ))
-            );
-        } else { // 否则判定用户登录失败
-            return Result.fail(ResCode.LOGIN_FAIL, "密码错误");
-        }
+        // 返回用户登录的结果
+        return userService.login(transfer);
     }
 }

@@ -1,7 +1,8 @@
 package org.tsubakice.service;
 
 import org.tsubakice.data.table.User;
-import org.tsubakice.resource.ResCode;
+import org.tsubakice.data.transfer.UserLoginTransfer;
+import org.tsubakice.resource.Result;
 
 public interface UserService {
 
@@ -20,9 +21,9 @@ public interface UserService {
     public abstract boolean isNotExists(String uname);
 
     /**
-     * 根据用户名查找用户
-     * @param uname 用户名
-     * @return 用户信息
+     * 用户登录功能实现
+     * @param transfer 用户登录信息实体
+     * @return 返回用户登录的响应
      */
-    public abstract User getUserByUname(String uname);
+    public abstract Result login(UserLoginTransfer transfer);
 }
