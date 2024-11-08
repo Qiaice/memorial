@@ -13,7 +13,7 @@ public interface UserMapper {
      * @param uname 用户名
      * @return 封装好的用户信息对象
      */
-    @Select(value = { "select * from users" })
+    @Select(value = { "select * from users where uname = #{uname}" })
     public abstract User selectUserByUname(String uname);
 
     /**

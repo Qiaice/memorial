@@ -3,6 +3,7 @@ package org.tsubakice.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.tsubakice.util.JwtBuilder;
 
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping(value = { "/users" }, produces = { "application/json; charset=utf-8" })
 public class UserController {
@@ -70,6 +72,7 @@ public class UserController {
 
         // 用户名不存在直接返回登录失败
         User user = userService.getUserByUname(transfer.getUname());
+        log.info("user: {}", user);
         if (user == null) {
             return Result.fail(
                     ResCode.LOGIN_FAIL, "用户 " + transfer.getUname() + " 不存在");
