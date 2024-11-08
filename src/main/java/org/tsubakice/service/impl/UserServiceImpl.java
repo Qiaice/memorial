@@ -72,18 +72,18 @@ public class UserServiceImpl implements UserService {
         if (!transfer.getPasswd().equals(transfer.getPasswd2()))
             return Result.fail(ResCode.REGISTER_FAIL, "两次密码不一致");
         //密码加密
-        String passwd=DigestUtils.md5DigestAsHex(transfer.getPasswd().getBytes());
+        String passwd = DigestUtils.md5DigestAsHex(transfer.getPasswd().getBytes());
         // 将用户注册信息转换为数据库实体
-        User user =User.builder()
+        User user = User.builder()
                 .passwd(passwd)
                 .uname(transfer.getUname())
                 .build();
         userMapper.insertUser(user);
-        String token =jwtBuilder.createToken(Map.of(
+        String token = jwtBuilder.createToken(Map.of(
                 "uid", user.getUid(),
                 "uname", user.getUname()
         ));
         //返回用户注册的结果
-        return Result.success(ResCode.REGISTER_SUCCESS, "注册成功",token);
+        return Result.success(ResCode.REGISTER_SUCCESS, "注册成功", token);
     }
 }

@@ -27,5 +27,10 @@ public interface UserService {
      */
     public abstract Result login(UserLoginTransfer transfer);
 
-    public Result register(UserRegisterTransfer transfer);
+    /**
+     * 用户注册功能实现
+     * @param transfer 用户登注册息实体
+     * @return 返回用户注册的响应
+     */
+    public abstract Result register(UserRegisterTransfer transfer);
 }
