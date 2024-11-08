@@ -58,6 +58,7 @@ knife4j:
     language: zh_cn
     enable-swagger-models: true
     swagger-model-name: 实体列表
+    enable-dynamic-parameter: true # 开启动态请求参数
   basic: # 配置 Swagger 的 Basic 认证功能
     enable: false
     username: tsubaki # 用户名自定义

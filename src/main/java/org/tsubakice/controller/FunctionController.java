@@ -33,6 +33,7 @@ public class FunctionController {
     @Operation(
             summary = "访问测试接口",
             description = "该接口用于测试是否能够访问到后端提供的服务")
+    @ApiResponse(responseCode = "SUCCESS", description = "访问测试成功")
     @GetMapping(value = { "/test" })
     public Result test(HttpServletRequest request) {
 
@@ -47,7 +48,7 @@ public class FunctionController {
         // 记录此次请求时间，一并回送给用户
         String time = LocalDateTime.now().toString().replace("T", " ");
         time = time.substring(0, time.indexOf("."));
-        return Result.success("访问成功", Map.of(
+        return Result.success(ResCode.SUCCESS, "访问成功", Map.of(
                 "headers", headers,
                 "time", time)
         );

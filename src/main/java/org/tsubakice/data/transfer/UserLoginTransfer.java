@@ -7,9 +7,9 @@ import lombok.Data;
 @Schema(name = "用户登录信息实体")
 public class UserLoginTransfer {
 
-    @Schema(description = "用户名", example = "zhangsan")
+    @Schema(description = "用户名", example = "zhangsan", requiredMode = Schema.RequiredMode.REQUIRED)
     private String uname;
 
-    @Schema(description = "用户密码", example = "123456")
+    @Schema(description = "用户密码", example = "123456", requiredMode = Schema.RequiredMode.REQUIRED)
     private String passwd;
 }
