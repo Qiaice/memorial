@@ -1,10 +1,12 @@
 package org.tsubakice.service.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.tsubakice.data.table.User;
 import org.tsubakice.data.transfer.UserLoginTransfer;
+import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.mapper.UserMapper;
 import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
@@ -58,5 +60,30 @@ public class UserServiceImpl implements UserService {
         } else { // 否则判定用户登录失败
             return Result.fail(ResCode.LOGIN_FAIL, "密码错误");
         }
+    }
+
+    @Override
+    public Result register(UserRegisterTransfer transfer) {
+        //用户名冲突直接返回注册失败
+        User transferUser = userMapper.selectUserByUname(transfer.getUname());
+        if (transferUser != null)
+            return Result.fail(ResCode.REGISTER_FAIL, "用户名冲突");
+        //密码不一致直接返回注册失败
+        if (!transfer.getPasswd().equals(transfer.getPasswd2()))
+            return Result.fail(ResCode.REGISTER_FAIL, "两次密码不一致");
+        //密码加密
+        String passwd=DigestUtils.md5DigestAsHex(transfer.getPasswd().getBytes());
+        // 将用户注册信息转换为数据库实体
+        User user =User.builder()
+                .passwd(passwd)
+                .uname(transfer.getUname())
+                .build();
+        userMapper.insertUser(user);
+        String token =jwtBuilder.createToken(Map.of(
+                "uid", user.getUid(),
+                "uname", user.getUname()
+        ));
+        //返回用户注册的结果
+        return Result.success(ResCode.REGISTER_SUCCESS, "注册成功",token);
     }
 }

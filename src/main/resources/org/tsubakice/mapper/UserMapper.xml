@@ -3,4 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.tsubakice.mapper.UserMapper"> <!-- 关联的 mapper 接口 -->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="uid">
+        insert into users (uname, passwd) values (#{uname}, #{passwd})
+    </insert>
 </mapper>

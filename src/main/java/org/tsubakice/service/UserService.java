@@ -1,7 +1,7 @@
 package org.tsubakice.service;
 
-import org.tsubakice.data.table.User;
 import org.tsubakice.data.transfer.UserLoginTransfer;
+import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.resource.Result;
 
 public interface UserService {
@@ -26,4 +26,6 @@ public interface UserService {
      * @return 返回用户登录的响应
      */
     public abstract Result login(UserLoginTransfer transfer);
+
+    public Result register(UserRegisterTransfer transfer);
 }

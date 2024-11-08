@@ -1,6 +1,5 @@
 package org.tsubakice.mapper;
 
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.tsubakice.data.table.User;
@@ -21,6 +20,7 @@ public interface UserMapper {
      * @param user 存储了用户信息的对象
      * @return 数据表被影响的行数
      */
-    @Insert(value = { "insert into users (uname, passwd) values (#{uname}, #{passwd})" })
+//    @AutoFill(value= OperationType.INSERT)
+//    @Insert(value = { "insert into users (uname, passwd) values (#{uname}, #{passwd})" })
     public abstract int insertUser(User user);
 }
