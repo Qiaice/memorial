@@ -7,11 +7,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.tsubakice.data.table.User;
 import org.tsubakice.data.transfer.UserLoginTransfer;
 import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
 import org.tsubakice.service.UserService;
+import org.tsubakice.util.JwtBuilder;
 
 import java.time.LocalDateTime;
 import java.util.Enumeration;
@@ -24,10 +26,12 @@ import java.util.Map;
 public class FunctionController {
 
     private final UserService userService;
+    private final JwtBuilder jwtBuilder;
 
     @Autowired
-    public FunctionController(UserService userService) {
+    public FunctionController(UserService userService, JwtBuilder jwtBuilder) {
         this.userService = userService;
+        this.jwtBuilder = jwtBuilder;
     }
 
     @Operation(
@@ -67,7 +71,7 @@ public class FunctionController {
     ) {
         // 用户注册所需逻辑
 
-        // 注册成功: return Result.success(ResCode.REGISTER_SUCCESS, "注册成功")
+        // 注册成功: return Result.success(ResCode.REGISTER_SUCCESS, "注册成功", token)
 
         // 注册失败: return Result.fail(ResCode.REGISTER_FAIL, "注册失败");
         return null;
@@ -84,11 +88,32 @@ public class FunctionController {
     public Result login(
             @RequestBody UserLoginTransfer transfer
     ) {
-        // 用户登录所需逻辑
+        // 校验空数据
+        String uname = transfer.getUname();
+        String passwd = transfer.getPasswd();
+        if (uname == null || passwd == null || uname.isEmpty() || passwd.isEmpty()) {
+            return Result.fail(ResCode.LOGIN_FAIL, "不能传递空数据");
+        }
 
-        // 登录成功: return Result.success(ResCode.LOGIN_SUCCESS, "登录成功", token)
+        // 用户名不存在直接返回登录失败
+        User user = userService.getUserByUname(transfer.getUname());
+        if (user == null) {
+            return Result.fail(
+                    ResCode.LOGIN_FAIL, "用户 " + transfer.getUname() + " 不存在");
+        }
 
-        // 登录失败: return Result.fail(ResCode.LOGIN_FAIL, "登录失败")
-        return null;
+        // 密码一致即可判定用户登录成功
+        if (user.getPasswd().equals(transfer.getPasswd())) {
+            return Result.success(
+                    ResCode.LOGIN_SUCCESS,
+                    "用户 " + transfer.getUname() + " 登录成功",
+                    jwtBuilder.createToken(Map.of(
+                            "uid", user.getUid(),
+                            "uname", user.getUname()
+                    ))
+            );
+        } else { // 否则判定用户登录失败
+            return Result.fail(ResCode.LOGIN_FAIL, "密码错误");
+        }
     }
 }
