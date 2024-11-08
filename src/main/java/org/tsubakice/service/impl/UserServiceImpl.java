@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         }
 
         // 密码一致即可判定用户登录成功
-        if (DigestUtils.md5DigestAsHex(user.getPasswd().getBytes()).equals(transfer.getPasswd())) {
+        if (DigestUtils.md5DigestAsHex(transfer.getPasswd().getBytes()).equals(user.getPasswd())) {
             return Result.success(
                     ResCode.LOGIN_SUCCESS,
                     "用户 " + transfer.getUname() + " 登录成功",
