@@ -5,20 +5,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tsubakice.data.table.User;
 import org.tsubakice.data.transfer.UserLoginTransfer;
 import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
 import org.tsubakice.service.UserService;
-import org.tsubakice.util.JwtBuilder;
-
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -45,8 +40,6 @@ public class UserController {
     ) {
         log.info("新增用户:{}",transfer);
         // 用户注册所需逻辑
-        // 注册成功: return Result.success(ResCode.REGISTER_SUCCESS, "注册成功", token)
-        // 注册失败: return Result.fail(ResCode.REGISTER_FAIL, "注册失败");
         return userService.register(transfer);
     }
 
