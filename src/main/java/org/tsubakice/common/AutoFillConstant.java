@@ -1,4 +1,4 @@
-package org.tsubakice.resource;
+package org.tsubakice.common;
 
 /**
  * 公共字段自动填充相关常量

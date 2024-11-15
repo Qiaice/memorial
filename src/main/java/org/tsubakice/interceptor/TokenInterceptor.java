@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.Result;
 import org.tsubakice.util.JwtBuilder;
 
 @Component

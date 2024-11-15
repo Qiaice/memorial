@@ -1,4 +1,4 @@
-package org.tsubakice.resource;
+package org.tsubakice.common;
 
 /**
  * 数据库操作类型

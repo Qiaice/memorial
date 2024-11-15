@@ -1,4 +1,4 @@
-package org.tsubakice.resource;
+package org.tsubakice.common;
 
 public enum ResCode {
 

@@ -12,9 +12,9 @@ import org.tsubakice.annotation.AutoFill;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
-import org.tsubakice.resource.OperationType;
+import org.tsubakice.common.OperationType;
 
-import static org.tsubakice.resource.AutoFillConstant.*;
+import static org.tsubakice.common.AutoFillConstant.*;
 
 
 /**

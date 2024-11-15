@@ -7,8 +7,8 @@ import org.tsubakice.data.table.User;
 import org.tsubakice.data.transfer.UserLoginTransfer;
 import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.mapper.UserMapper;
-import org.tsubakice.resource.ResCode;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.ResCode;
+import org.tsubakice.common.Result;
 import org.tsubakice.service.UserService;
 import org.tsubakice.util.JwtBuilder;
 

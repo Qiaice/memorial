@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
-import org.tsubakice.resource.ResCode;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.ResCode;
+import org.tsubakice.common.Result;
 
 import java.time.LocalDateTime;
 import java.util.Enumeration;

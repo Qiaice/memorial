@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tsubakice.data.transfer.UserLoginTransfer;
 import org.tsubakice.data.transfer.UserRegisterTransfer;
-import org.tsubakice.resource.ResCode;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.ResCode;
+import org.tsubakice.common.Result;
 import org.tsubakice.service.UserService;
 
 @Tag(name = "用户管理模块")
