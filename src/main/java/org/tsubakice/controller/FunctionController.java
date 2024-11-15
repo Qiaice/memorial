@@ -2,18 +2,11 @@ package org.tsubakice.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.tsubakice.data.table.User;
-import org.tsubakice.data.transfer.UserLoginTransfer;
-import org.tsubakice.data.transfer.UserRegisterTransfer;
 import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
-import org.tsubakice.service.UserService;
-import org.tsubakice.util.JwtBuilder;
 
 import java.time.LocalDateTime;
 import java.util.Enumeration;
@@ -48,5 +41,4 @@ public class FunctionController {
                 "time", time)
         );
     }
-
 }

@@ -1,9 +1,5 @@
 package org.tsubakice.annotation;
 
-
-
-
-
 import org.tsubakice.resource.OperationType;
 
 import java.lang.annotation.ElementType;
