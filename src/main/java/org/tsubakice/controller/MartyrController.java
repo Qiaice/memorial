@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tsubakice.data.view.MartyrInfoView;
+import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
 import org.tsubakice.service.MartyrService;
 
@@ -49,6 +51,9 @@ public class MartyrController {
     public Result getMartyrById(
             @PathVariable Integer mid
     ) {
-        return null;
+        MartyrInfoView martyr = martyrService.getMartyrById(mid);
+        return martyr != null ?
+                Result.success(ResCode.GET_MARTYRS_ITEM_SUCCESS, "获取烈士信息成功", martyr) :
+                Result.fail(ResCode.GET_MARTYRS_ITEM_FAIL, "获取烈士信息失败");
     }
 }
