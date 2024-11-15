@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.Result;
 import org.tsubakice.service.CityService;
 
 @Tag(name = "城市管理模块")

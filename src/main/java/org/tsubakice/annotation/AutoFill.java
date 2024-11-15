@@ -1,6 +1,6 @@
 package org.tsubakice.annotation;
 
-import org.tsubakice.resource.OperationType;
+import org.tsubakice.common.OperationType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

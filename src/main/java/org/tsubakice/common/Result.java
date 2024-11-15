@@ -1,4 +1,4 @@
-package org.tsubakice.resource;
+package org.tsubakice.common;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

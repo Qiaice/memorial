@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tsubakice.data.view.MartyrInfoView;
-import org.tsubakice.resource.ResCode;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.ResCode;
+import org.tsubakice.common.Result;
 import org.tsubakice.service.MartyrService;
 
 @Tag(name = "烈士管理模块")

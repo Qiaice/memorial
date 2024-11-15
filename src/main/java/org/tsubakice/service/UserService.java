@@ -2,7 +2,7 @@ package org.tsubakice.service;
 
 import org.tsubakice.data.transfer.UserLoginTransfer;
 import org.tsubakice.data.transfer.UserRegisterTransfer;
-import org.tsubakice.resource.Result;
+import org.tsubakice.common.Result;
 
 public interface UserService {
 
