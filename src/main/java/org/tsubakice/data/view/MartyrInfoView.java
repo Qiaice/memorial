@@ -2,6 +2,7 @@ package org.tsubakice.data.view;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.tsubakice.data.table.Martyr;
 
 @Data
 @Schema(name = "烈士信息实体")
@@ -48,4 +49,25 @@ public class MartyrInfoView {
 
     @Schema(description = "烈士事迹", example = "1934，年在平昌镇龙关作战中牺牲")
     private String deeds;
+
+    public MartyrInfoView(Martyr martyr) {
+        this.photo = martyr.getPhoto();
+        this.name = martyr.getName();
+        this.hometown = martyr.getHometown();
+        this.gender = switch (martyr.getGender()) {
+            case 1 -> "男";
+            case 2 -> "女";
+            default -> "不详";
+        };
+        this.politicsStatus = martyr.getPoliticsStatus();
+        this.birthDate = martyr.getBirthDate();
+        this.dept = martyr.getDept();
+        this.position = martyr.getPosition();
+        this.achievement = martyr.getAchievement();
+        this.deathDate = martyr.getDeathDate();
+        this.deathCampaign = martyr.getDeathCampaign();
+        this.deathAddress = martyr.getDeathAddress();
+        this.buryPoint = martyr.getBuryPoint();
+        this.deeds = martyr.getDeeds();
+    }
 }

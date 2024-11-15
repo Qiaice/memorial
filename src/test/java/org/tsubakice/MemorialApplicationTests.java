@@ -3,6 +3,7 @@ package org.tsubakice;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.DigestUtils;
 import org.tsubakice.data.table.User;
 import org.tsubakice.mapper.UserMapper;
 import org.tsubakice.util.JwtBuilder;
@@ -34,7 +35,7 @@ public class MemorialApplicationTests {
     public void insertUserTest() {
         User user = new User();
         user.setUname("tsubaki");
-        user.setPasswd("040905");
+        user.setPasswd(DigestUtils.md5DigestAsHex("040905".getBytes()));
         if (userMapper.insertUser(user) > 0) {
             System.out.println("添加用户成功");
         } else {
