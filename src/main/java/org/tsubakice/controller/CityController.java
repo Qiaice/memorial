@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.tsubakice.common.ResCode;
 import org.tsubakice.common.Result;
+import org.tsubakice.data.view.CityInfoView;
 import org.tsubakice.service.CityService;
+
+import java.util.List;
 
 @Tag(name = "城市管理模块")
 @RestController
@@ -33,6 +37,9 @@ public class CityController {
     })
     @GetMapping(value = { "/all" })
     public Result getAllCities() {
-        return null;
+        List<CityInfoView> cityInfoViewList = cityService.getAllCities();
+        return cityInfoViewList == null ?
+                Result.success(ResCode.GET_ALL_CITIES_SUCCESS,"获取所有城市信息失败"):
+                Result.success(ResCode.GET_ALL_CITIES_SUCCESS,"获取所有城市信息成功",cityInfoViewList);
     }
 }
