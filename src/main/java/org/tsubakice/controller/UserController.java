@@ -3,6 +3,7 @@ package org.tsubakice.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.tsubakice.resource.ResCode;
 import org.tsubakice.resource.Result;
 import org.tsubakice.service.UserService;
 
+@Tag(name = "用户管理模块")
 @Slf4j
 @RestController
 @RequestMapping(value = { "/users" }, produces = { "application/json; charset=utf-8" })
