@@ -51,7 +51,7 @@ public class MartyrInfoView {
     private String deeds;
 
     public MartyrInfoView(Martyr martyr) {
-        this.photo = martyr.getPhoto();
+        this.photo = "https://www.sctyjrsw.com/image" + martyr.getPhoto();
         this.name = martyr.getName();
         this.hometown = martyr.getHometown();
         this.gender = switch (martyr.getGender()) {
