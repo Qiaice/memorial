@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.tsubakice.resource.Result;
@@ -33,6 +34,21 @@ public class MartyrController {
     })
     @GetMapping(value = { "/allItem" })
     public Result getAllMartyrs() {
+        return null;
+    }
+
+    @Operation(
+            summary = "根据烈士 id 查找对应烈士信息接口",
+            description = "根据烈士 id 查找对应烈士信息"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "GET_MARTYRS_ITEM_SUCCESS", description = "获取烈士信息成功"),
+            @ApiResponse(responseCode = "GET_MARTYRS_ITEM_FAIL", description = "获取烈士信息失败")
+    })
+    @GetMapping(value = { "/{mid}" })
+    public Result getMartyrById(
+            @PathVariable Integer mid
+    ) {
         return null;
     }
 }
