@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.tsubakice.data.view.MartyrInfoView;
 import org.tsubakice.common.ResCode;
 import org.tsubakice.common.Result;
+import org.tsubakice.data.view.MartyrItemView;
 import org.tsubakice.service.MartyrService;
+
+import java.util.List;
 
 @Tag(name = "烈士管理模块")
 @RestController
@@ -36,7 +40,10 @@ public class MartyrController {
     })
     @GetMapping(value = { "/allItem" })
     public Result getAllMartyrs() {
-        return null;
+        List<MartyrItemView> list = martyrService.getAllMartyrItem();
+        return list.isEmpty() ?
+                Result.fail(ResCode.GET_ALL_MARTYRS_ITEM_FAIL, "获取所有简短烈士信息失败") :
+                Result.success(ResCode.GET_ALL_MARTYRS_ITEM_SUCCESS, "获取所有简短烈士信息成功", list);
     }
 
     @Operation(

@@ -17,7 +17,7 @@ import java.util.List;
 
 @Tag(name = "城市管理模块")
 @RestController
-@RequestMapping(value = { "/cities" }, produces = { "application/json; charset=utf-8" })
+@RequestMapping(value = {"/cities"}, produces = {"application/json; charset=utf-8"})
 public class CityController {
 
     private final CityService cityService;
@@ -35,11 +35,11 @@ public class CityController {
             @ApiResponse(responseCode = "GET_ALL_CITIES_SUCCESS", description = "获取所有城市信息成功"),
             @ApiResponse(responseCode = "GET_ALL_CITIES_FAIL", description = "获取所有城市信息失败")
     })
-    @GetMapping(value = { "/all" })
+    @GetMapping(value = {"/all"})
     public Result getAllCities() {
         List<CityInfoView> cityInfoViewList = cityService.getAllCities();
         return cityInfoViewList == null ?
-                Result.success(ResCode.GET_ALL_CITIES_SUCCESS,"获取所有城市信息失败"):
-                Result.success(ResCode.GET_ALL_CITIES_SUCCESS,"获取所有城市信息成功",cityInfoViewList);
+                Result.fail(ResCode.GET_ALL_CITIES_SUCCESS, "获取所有城市信息失败") :
+                Result.success(ResCode.GET_ALL_CITIES_SUCCESS, "获取所有城市信息成功", cityInfoViewList);
     }
 }
