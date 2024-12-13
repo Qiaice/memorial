@@ -14,4 +14,6 @@ public enum ResCode {
     GET_ALL_MARTYRS_ITEM_FAIL, // 获取所有简短烈士信息失败
     GET_MARTYRS_ITEM_SUCCESS, // 获取烈士信息成功
     GET_MARTYRS_ITEM_FAIL, // 获取烈士信息失败
+    GET_ALL_MARTYRS_ITEM_BY_CID_SUCCESS, // 获取烈士信息成功
+    GET_ALL_MARTYRS_ITEM_BY_CID_FAIL, // 获取烈士信息失败
 }

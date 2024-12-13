@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -62,5 +61,23 @@ public class MartyrController {
         return martyr != null ?
                 Result.success(ResCode.GET_MARTYRS_ITEM_SUCCESS, "获取烈士信息成功", martyr) :
                 Result.fail(ResCode.GET_MARTYRS_ITEM_FAIL, "获取烈士信息失败");
+    }
+
+    @Operation(
+            summary = "根据城市 id 查找对应烈士信息集合",
+            description = "根据城市 id 查找对应烈士信息集合"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "GET_ALL_MARTYRS_ITEM_BY_CID_SUCCESS", description = "获取烈士信息成功"),
+            @ApiResponse(responseCode = "GET_ALL_MARTYRS_ITEM_BY_CID_FAIL", description = "获取烈士信息失败"),
+    })
+    @GetMapping(value = { "/byCity/{cid}" })
+    public Result getAllMartyrsByCid(
+            @PathVariable Integer cid
+    ) {
+        List<MartyrItemView> list = martyrService.getAllMartyrsByCid(cid);
+        return list.isEmpty() ?
+                Result.fail(ResCode.GET_ALL_MARTYRS_ITEM_BY_CID_FAIL, "获取烈士信息失败") :
+                Result.success(ResCode.GET_ALL_MARTYRS_ITEM_BY_CID_SUCCESS, "获取烈士信息成功", list);
     }
 }

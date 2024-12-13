@@ -10,4 +10,6 @@ public interface MartyrService {
     MartyrInfoView getMartyrById(Integer mid);
 
     List<MartyrItemView> getAllMartyrItem();
+
+    List<MartyrItemView> getAllMartyrsByCid(Integer cid);
 }

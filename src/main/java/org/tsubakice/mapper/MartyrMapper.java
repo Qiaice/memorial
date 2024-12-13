@@ -14,4 +14,7 @@ public interface MartyrMapper {
 
     @Select(value = { "select * from martyrs" })
     List<Martyr> selectAllMartyrs();
+
+    @Select(value = { "select m.* from facilities as f inner join martyrs as m on f.fid = m.fid where cid = #{cid}" })
+    List<Martyr> selectAllMartyrsByCid(Integer cid);
 }

@@ -28,4 +28,9 @@ public class MartyrServiceImpl implements MartyrService {
     public List<MartyrItemView> getAllMartyrItem() {
         return martyrMapper.selectAllMartyrs().stream().map(MartyrItemView::new).toList();
     }
+
+    @Override
+    public List<MartyrItemView> getAllMartyrsByCid(Integer cid) {
+        return martyrMapper.selectAllMartyrsByCid(cid).stream().map(MartyrItemView::new).toList();
+    }
 }
