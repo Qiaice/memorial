@@ -38,7 +38,7 @@ public class FacilityServiceImpl implements FacilityService {
     public Facility getByFid(Integer fid) {
         Facility facility = facilityMapper.selectByFid(fid);
         if (facility != null) { facility.setImg("https://www.sctyjrsw.com/image" + facility.getImg()); }
-        return facilityMapper.selectByFid(fid);
+        return facility;
     }
 
     @Override
