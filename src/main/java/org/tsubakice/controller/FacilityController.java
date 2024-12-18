@@ -41,4 +41,15 @@ public class FacilityController {
                 Result.success(ResCode.SUCCESS, "查询成功", facility) :
                 Result.fail(ResCode.FAIL, "查询失败");
     }
+
+    @GetMapping(value = "/{page}/{pageSize}")
+    public Result listByPage(
+            @PathVariable Integer page,
+            @PathVariable Integer pageSize
+    ) {
+        List<Facility> list = facilityService.listByPage(page, pageSize);
+        return !list.isEmpty() ?
+                Result.success(ResCode.SUCCESS, "查询成功", list) :
+                Result.fail(ResCode.FAIL, "查询失败");
+    }
 }

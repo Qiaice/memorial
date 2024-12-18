@@ -1,5 +1,7 @@
 package org.tsubakice.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tsubakice.data.table.Facility;
@@ -36,5 +38,16 @@ public class FacilityServiceImpl implements FacilityService {
         Facility facility = facilityMapper.selectByFid(fid);
         if (facility != null) { facility.setImg("https://www.sctyjrsw.com/image" + facility.getImg()); }
         return facilityMapper.selectByFid(fid);
+    }
+
+    @Override
+    public List<Facility> listByPage(Integer page, Integer pageSize) {
+        PageHelper.startPage(page, pageSize);
+        List<Facility> list = facilityMapper.list();
+        if (!list.isEmpty()) {
+            list.forEach(item -> item.setImg("https://www.sctyjrsw.com/image" + item.getImg()));
+        }
+        Page<Facility> pages = (Page<Facility>) list;
+        return pages.getResult();
     }
 }
