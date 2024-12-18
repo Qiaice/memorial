@@ -35,15 +35,16 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.getOutputStream()
                     .write(JSON.toJSONString(Result.fail("没有携带 token")).getBytes());
             return false;
-        } else if (!token.startsWith("Bearer ")) { // 拦截 token 格式错误的请求
+        } /*else if (!token.startsWith("Bearer ")) { // 拦截 token 格式错误的请求
             response.getOutputStream()
                     .write(JSON.toJSONString(Result.fail("token 格式有误")).getBytes());
             return false;
-        }
+        }*/
 
         // 检查 token 是否有效
         try {
-            jwtBuilder.parseToken(token.split(" ")[1]);
+//            jwtBuilder.parseToken(token.split(" ")[1]);
+            jwtBuilder.parseToken(token);
         } catch (Exception e) {
             response.getOutputStream()
                     .write(JSON.toJSONString(Result.fail("token 解析失败")).getBytes());
