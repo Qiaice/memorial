@@ -12,6 +12,7 @@ import org.tsubakice.data.view.FacilityView;
 import org.tsubakice.service.FacilityService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = { "/facilities" }, produces = { "application/json; charset=utf-8" })
@@ -47,9 +48,10 @@ public class FacilityController {
             @PathVariable Integer page,
             @PathVariable Integer pageSize
     ) {
-        List<Facility> list = facilityService.listByPage(page, pageSize);
+        Map<String, Object> map = facilityService.listByPage(page, pageSize);
+        List<Facility> list = (List<Facility>) map.get("list");
         return !list.isEmpty() ?
-                Result.success(ResCode.SUCCESS, "查询成功", list) :
+                Result.success(ResCode.SUCCESS, "查询成功", map) :
                 Result.fail(ResCode.FAIL, "查询失败");
     }
 }

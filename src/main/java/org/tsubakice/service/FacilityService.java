@@ -4,6 +4,7 @@ import org.tsubakice.data.table.Facility;
 import org.tsubakice.data.view.FacilityView;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FacilityService {
 
@@ -11,5 +12,5 @@ public interface FacilityService {
 
     Facility getByFid(Integer fid);
 
-    List<Facility> listByPage(Integer page, Integer pageSize);
+    Map<String, Object> listByPage(Integer page, Integer pageSize);
 }

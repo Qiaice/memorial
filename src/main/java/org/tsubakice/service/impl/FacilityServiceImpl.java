@@ -10,6 +10,7 @@ import org.tsubakice.mapper.FacilityMapper;
 import org.tsubakice.service.FacilityService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,13 +42,13 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public List<Facility> listByPage(Integer page, Integer pageSize) {
+    public Map<String, Object> listByPage(Integer page, Integer pageSize) {
         PageHelper.startPage(page, pageSize);
         List<Facility> list = facilityMapper.list();
         if (!list.isEmpty()) {
             list.forEach(item -> item.setImg("https://www.sctyjrsw.com/image" + item.getImg()));
         }
         Page<Facility> pages = (Page<Facility>) list;
-        return pages.getResult();
+        return Map.of("total", pages.getTotal(), "list", pages.getResult());
     }
 }
