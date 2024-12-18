@@ -2,6 +2,7 @@ package org.tsubakice.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.tsubakice.data.table.Facility;
 import org.tsubakice.data.view.FacilityView;
 import org.tsubakice.mapper.FacilityMapper;
 import org.tsubakice.service.FacilityService;
@@ -28,5 +29,12 @@ public class FacilityServiceImpl implements FacilityService {
             view.setImg("https://www.sctyjrsw.com/image" + item.getImg());
             return view;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public Facility getByFid(Integer fid) {
+        Facility facility = facilityMapper.selectByFid(fid);
+        if (facility != null) { facility.setImg("https://www.sctyjrsw.com/image" + facility.getImg()); }
+        return facilityMapper.selectByFid(fid);
     }
 }

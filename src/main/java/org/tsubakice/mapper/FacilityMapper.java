@@ -11,4 +11,7 @@ public interface FacilityMapper {
 
     @Select(value = "select * from facilities")
     List<Facility> list();
+
+    @Select(value = "select * from facilities where fid = #{fid}")
+    Facility selectByFid(Integer fid);
 }
