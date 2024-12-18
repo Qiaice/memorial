@@ -33,4 +33,6 @@ public interface UserService {
      * @return 返回用户注册的响应
      */
     public abstract Result register(UserRegisterTransfer transfer);
+
+    boolean resetPasswdByUname(String uname, String passwd, String passwd2);
 }

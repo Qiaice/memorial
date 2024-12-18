@@ -85,4 +85,17 @@ public class UserServiceImpl implements UserService {
         //返回用户注册的结果
         return Result.success(ResCode.REGISTER_SUCCESS, "注册成功", token);
     }
+
+    @Override
+    public boolean resetPasswdByUname(String uname, String passwd, String passwd2) {
+        User user = userMapper.selectUserByUname(uname);
+        if (user == null) {
+            return false;
+        }
+        if (!passwd.equals(passwd2)) {
+            return false;
+        }
+        passwd = DigestUtils.md5DigestAsHex(passwd2.getBytes());
+        return userMapper.updatePasswdByUname(uname, passwd) > 0;
+    }
 }

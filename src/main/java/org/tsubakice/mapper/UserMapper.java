@@ -2,6 +2,7 @@ package org.tsubakice.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.tsubakice.data.table.User;
 
 @Mapper
@@ -23,4 +24,7 @@ public interface UserMapper {
 //    @AutoFill(value= OperationType.INSERT)
 //    @Insert(value = { "insert into users (uname, passwd) values (#{uname}, #{passwd})" })
     public abstract int insertUser(User user);
+
+    @Update(value = "update users set passwd = #{passwd} where uname = #{uname}")
+    int updatePasswdByUname(String uname, String passwd);
 }

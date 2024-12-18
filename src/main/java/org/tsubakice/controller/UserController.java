@@ -66,4 +66,14 @@ public class UserController {
         // 返回用户登录的结果
         return userService.login(transfer);
     }
+
+    @PostMapping(value = "/reset")
+    public Result resetPasswd(
+            @RequestBody UserRegisterTransfer transfer
+    ) {
+        boolean flag = userService.resetPasswdByUname(transfer.getUname(),
+                transfer.getPasswd(), transfer.getPasswd2());
+        return flag ? Result.success(ResCode.SUCCESS, "更新成功") :
+                Result.fail(ResCode.FAIL, "更新失败");
+    }
 }
